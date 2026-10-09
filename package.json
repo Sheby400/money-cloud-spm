@@ -1,0 +1,16 @@
+{
+  "name": "moneycloud",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev -w @moneycloud/api",
+    "dev:web": "npm run dev -w @moneycloud/web",
+    "test": "npm run test -w @moneycloud/api",
+    "build": "npm run build -w @moneycloud/web"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
