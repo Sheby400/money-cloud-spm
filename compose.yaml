@@ -1,0 +1,12 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      PORT: 3001
+      STORAGE_DRIVER: memory
+      CORS_ORIGIN: http://localhost:5173
+    restart: unless-stopped
