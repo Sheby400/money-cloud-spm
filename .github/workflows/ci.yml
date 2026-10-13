@@ -1,0 +1,33 @@
+on:
+    push:
+        branches: [master, develop]
+    pull_request: 
+
+permissions: 
+    contents: read
+
+jobs:
+    validate:
+        runs-on: ubuntu-latest
+
+    steps:
+        - name: Checkout
+            uses: actions/checkout@v4
+
+        - name: Setup Node.js
+            uses: actions/setu-node@v4
+            with:
+                node-version: '22'
+                cache: npm
+                
+        - name: Install Dependencies
+                run: npm ci
+
+        - name: API tests
+                run: npm test
+
+        - name: Build Frontend
+                run: npm run build
+        
+        - name: Build Api Docker Image
+                run: docker build -f apps/api/Dockerfile -t moneycloud-api:ci
